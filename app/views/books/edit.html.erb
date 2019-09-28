@@ -1,0 +1,30 @@
+
+<div class="container">
+
+<h1>Editing Book</h1>
+
+
+<%= form_for(@book) do |t|  %>
+
+	<div class ="field row">
+
+		<lavel for="book_title">Title</lavel>
+		<br>
+		<%= t.text_field :title, class: "col-xs-12 book_title" %>
+		<br>
+	</div>
+	<div class ="field row">
+		<label for="book_body">Opinion</label>
+		<br>
+		<%= t.text_area :body, class: "col-xs-12 book_body"%>
+		<br>
+	</div>
+	<%=t.submit('Update Book', class: "btn btn-primary col-xs-12") %>
+
+<% end %>
+
+
+
+<%= link_to "Show", book_path(@book) %> | <%= link_to "back",books_path %>
+
+</div>

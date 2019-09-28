@@ -1,0 +1,62 @@
+<div class="col-xs-3">
+
+	<% if user_signed_in? %>
+
+
+		<div class="side-top">
+
+			<h2>User_info</h2>
+
+			<h4><%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", class: "pull-left profile-thumb",  size: "100x100" %>
+			</h4>
+
+			<table class="table">
+				<tr>
+					<th>name</th>
+					<th><%= user.name %></th>
+				</tr>
+				<tr>
+					<th>introduction</th>
+					<th><%= user.introduction %></th>
+				</tr>
+			</table>
+			<div>
+				<%= link_to edit_user_path(user.id), class: "col-xs-12 btn btn-block btn-default" do %>
+					<i class="glyphicon glyphicon-wrench"></i>
+				<% end %>
+			</div>
+		</div>
+
+
+
+		<div class="side-bottom">
+
+			<h2>New Book</h2>
+
+			<!-- フォームの部分 -->
+			<div class="form">
+				<%= form_for(book) do |f| %>
+				    <div class= "field row" >
+						<label for="book_title">Title</label>
+						<br>
+						<%= f.text_field :title, class: 'col-xs-12' %>
+				    </div>
+					<br>
+					<div class= "field row" >
+						<label for="book_opinion">Opinion</label>
+						<br>
+						<%= f.text_area :body, class: 'col-xs-12' %>
+					</div>
+						<%= f.submit('Create Book', class: 'btn btn-primary col-xs-12') %>
+
+				<% end %>
+			</div>
+		</div>
+
+	<% else %>
+
+
+	<% end %>
+
+</div>
+

@@ -1,0 +1,42 @@
+
+
+
+
+<!-- showページで定義した変数を、sidebar.html.erbのbookに代入 -->
+
+<!-- 短縮形(中身)は、render '一つ前の階層のフォルダ/ファイル名’, ←のファイルにおいた変数: このページのアクションで定義したインスタンス変数-->
+
+<!-- 例：　render 'share/sidebar', book: @book_new -->
+
+
+
+
+
+<div class="container">
+<div class="row">
+<%= render partial: 'share/sidebar',locals: { book: @book_new, user: @user } %>
+<div class="col-xs-9">
+
+	<h2>Book detail</h2>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<td><%= attachment_image_tag @book.user, :profile_image, fallback: "no_image.jpg", class: "pull-left profile-thumb", size: '100x100' %></td>
+
+				<td><h4><%= @book.title %></h4></td>
+				<td><h4><%= @book.body %></h4></td>
+				<% if @user == current_user %>
+
+					<td><%= link_to "Edit", edit_book_path(@book) , class: "btn-sm btn-success edit_book_12597" %></td>
+					<td><%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn-sm btn-danger destroy_book_12597" %></td>
+
+				<% end %>
+			</tr>
+
+		</tbody>
+	</table>
+	<%= link_to "#{@user.name}", user_path(@user) %>
+</div>
+</div>
+</div>

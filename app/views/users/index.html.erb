@@ -1,0 +1,45 @@
+
+
+
+
+<div class="container">
+<div class="row">
+<%= render partial: 'share/sidebar',locals: { book: @book_new, user:@user } %>
+<div class="col-xs-9">
+
+    <h2>Users</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>image</th>
+            <th>name</th>
+            <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+     <% @users.each do |t| %>
+
+ <tr>
+
+            <td><%= attachment_image_tag t, :profile_image, fallback: "no_image.jpg", size: "100x100", class: "pull-left profile-thumb" %></td>
+
+            <td><%=t.name %></td>
+            <td><%= link_to "show",user_path(t) %></td>
+
+            </th>
+
+        </tr>
+
+
+        <% end %>
+
+    </tbody>
+</table>
+
+
+</div>
+</div>
+</div>

@@ -1,0 +1,60 @@
+
+
+<% if @book.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <%= @book.errors.count %> errors prohibited this obj from being saved
+      <% @book.errors.full_messages.each do |t| %>
+        <li><%= t %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<div class="container">
+<div class="row">
+<%= render partial: 'share/sidebar',locals: { book: @book, user: @user } %>
+<div class="col-xs-9">
+
+
+
+<h2>Books</h2>
+
+
+<table class="table table-hover table-inverse">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+            <th colspan="3"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+     <% @books.each do |t| %>
+
+        <tr>
+           <th>
+
+            <td><%= attachment_image_tag t.user, :profile_image, fallback: "no_image.jpg", size: "100x100", class: "pull-left profile-thumb" %></td>
+
+            <td><%= link_to "#{t.title}",book_path(t) %></td>
+            <td><%=t.body %></td>
+
+            </th>
+
+        </tr>
+
+
+        <% end %>
+
+    </tbody>
+</table>
+
+</div>
+</div>
+</div>

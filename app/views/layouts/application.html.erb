@@ -1,0 +1,76 @@
+
+<head>
+<title>Bookers2</title>
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body>
+
+  <div class="error_explanation">
+
+  <!-- ヘッダーメニュー -->
+
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <h5>Bookers</h5>
+        </nav>
+        <nav>
+          <% if user_signed_in? %>
+            <ul class="nav navbar-nav navbar-right">
+
+              <li><%= link_to  user_path(current_user.id) do %><i class="glyphicon glyphicon-home" aria-hidden="true"> Home</i><% end %></li>
+
+              <li><%= link_to  users_path do %><i class="glyphicon glyphicon-user" aria-hidden="true"> Users</i><% end %></li>
+
+              <li><%= link_to  books_path do %><i class="glyphicon glyphicon-book" aria-hidden="true"> Books</i><% end %></li>
+
+              <li><%= link_to  destroy_user_session_path, method: :delete do %><i class="glyphicon glyphicon-log-out" aria-hidden="true"> logout</i><% end %></li>
+
+          <% else %>
+              <ul class="nav navbar-nav navbar-right">
+
+              <li><%= link_to  root_path do %><i class="glyphicon glyphicon-home" aria-hidden="true"> Home</i><% end %></li>
+
+              <li><%= link_to  home_about_path do %><i class="glyphicon glyphicon-link" aria-hidden="true"> About</i><% end %></li>
+
+              <li><%= link_to  new_user_registration_path do %><i class="glyphicon glyphicon-edit" aria-hidden="true"> sign up</i><% end %></li>
+
+              <li><%= link_to  new_user_session_path do %><i class="glyphicon glyphicon-log-in" aria-hidden="true"> login</i><% end %></li>
+
+            </ul>
+
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+  </div>
+
+  <!--フラッシュ（サクセス）メッセージ追加（devise含む） -->
+
+  <% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
+  <%= yield %>
+
+
+
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3 col-xs-offset-9">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+</body>

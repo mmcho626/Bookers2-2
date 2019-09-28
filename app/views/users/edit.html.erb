@@ -1,0 +1,53 @@
+
+
+<h2>User info</h2>
+
+
+
+<% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+        <ul>
+          <%= @user.errors.count %> errors prohibited this obj from being saved
+          <% @user.errors.full_messages.each do |t| %>
+            <li><%= t %></li>
+          <% end %>
+        </ul>
+    </div>
+<% end %>
+
+
+
+<div class="container">
+
+    <div class="row">
+
+
+        <div class="col-xs-9">
+
+            <%= form_for(@user) do |f| %>
+                <div class="form-group has-icon">
+                    <label for="user_name">Name</label>
+                    <%= f.text_field :name, autofocus: true %>
+                    <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+                </div>
+
+                <div class="form-group has-icon">
+                    <label for="user_image">Image</label>
+                    <%= f.attachment_field :profile_image, class: "user-edit-form" %>
+                </div>
+
+
+                <div class="form-group has-icon">
+                    <label for="user_introduction">Introduction</label>
+                    <%= f.text_area :introduction, autofocus: true %>
+                    <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
+                </div>
+
+
+                <%= f.submit "UpdateUser" %>
+            <% end %>
+
+
+        </div>
+    </div>
+</div>

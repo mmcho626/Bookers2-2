@@ -1,0 +1,41 @@
+
+<div class="container">
+<div class="row">
+<%= render partial: 'share/sidebar',locals: { book: @book_new, user: @user } %>
+<div class="col-xs-9">
+
+
+    <h2>Books</h2>
+
+
+
+    <table class="table table-hover table-inverse">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+                <th colspan="3"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <% @books.each do |t| %>
+
+                <tr>
+                    <td><%= attachment_image_tag t.user, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %></td>
+                    <td><%= link_to "#{t.title}", book_path(t.id) %></td>
+                    <td><%=t.body %></td>
+                </tr>
+
+
+            <% end %>
+
+        </tbody>
+    </table>
+
+
+</div>
+</div>
+</div>
