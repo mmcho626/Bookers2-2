@@ -37,6 +37,54 @@
 		</tbody>
 	</table>
 	<%= link_to "#{@user.name}", user_path(@user) %>
+
+
+    <li>
+       <i class="fa fa-comment"></i>
+       <a href="#comments"><%= @book.book_comments.count %></a>
+    </li>
+
+
+
+    <div class="comment-list bt style-2" id="comments">
+    <div class="float-wrapper">
+        <h2 class="comment-count"><%= @book.book_comments.count %>件コメント</h2>
+    </div>
+
+	<ol>
+	    <% @book.book_comments.each do |book_comment| %>
+	        <li class="comment">
+	            <div class="comment-body bb">
+	                <div class="comment-avatar">
+	                    <div class="avatar">
+	                        <%= image_tag('sample-author1.jpg', style: "width: 60px; height: 60px;") %>
+	                    </div>
+	                </div>
+	                <div class="comment-text">
+	                    <div class="comment-author clearfix">
+	                        <a href="#" class="link-author"><%= book_comment.user.name %></a>
+	                        <span class="comment-meta">
+	                          <span class="comment-date"><%= book_comment.created_at.strftime('%Y/%m/%d') %></span>
+	                        </span>
+	                    </div>
+	                    <div class="comment-entry"><%= book_comment.comment %></div>
+	                </div>
+	            </div>
+	        </li>
+	    <% end %>
+	</ol>
+
+
+    <%= form_for [@book, @book_comment] do |f| %>
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <%= f.text_area :comment, class: "form-control",placeholder: "コメントをここに" %>
+	        </div>
+	    </div>
+	    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    <% end %>
+
+
 </div>
 </div>
 </div>

@@ -31,6 +31,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @book_new = Book.new # renderでshowページにsidebar.html.erbを呼び出すための変数を定義
     @user = @book.user #Nの@bookから1のuserの情報を取り出して@bookの左辺のidを代入
+    @book_comment = BookComment.new #コメント入力フォーム
   end
 
   def edit
