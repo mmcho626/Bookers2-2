@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
 	resources :books do
 		# コントローラのidをリクエストに含めるため、単数形
-		resource :book_comments, only: [:create, :destroy]
+		resource :book_comments, only: [:create, :edit, :update, :destroy]
 	end
 
 	resources :users, only: [:index, :show, :edit, :show, :update]
